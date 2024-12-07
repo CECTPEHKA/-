@@ -1,0 +1,209 @@
+/* Загальні стилі */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Шапка */
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #ff5678;
+}
+
+/* Основний контейнер */
+main {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    flex-direction: row; /* По умолчанию элементы расположены в ряд */
+}
+
+/* Галерея */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    flex: 2; /* Збільшена область для галереї */
+}
+
+/* Картки */
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 100%; /* Ширина зображення відповідає ширині контейнера */
+    height: 200px; /* Фіксована висота */
+    object-fit: cover; /* Обрізає зображення, зберігаючи пропорції */
+}
+
+.card h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.card p {
+    margin: 0 0 10px;
+    color: #555;
+}
+
+/* Панель управління (фільтри) */
+.controls {
+    flex: 1; /* Займає майже всю праву частину */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Элементы фильтров по вертикали */
+}
+
+/* Фільтри */
+.controls h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.controls label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.controls input[type="range"] {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.controls button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #ff5678;
+    color: white;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #ff3456;
+}
+
+/* Футер */
+footer {
+    background-color: #f8f8f8;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 1px solid #ddd;
+}
+
+/* --- Адаптивні стилі --- */
+
+/* Мобільні пристрої (375px–730px) */
+@media (max-width: 730px) {
+    main {
+        flex-direction: column;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr; /* Одна картка в рядок */
+    }
+
+    .controls {
+        flex: none;
+        width: 100%; /* Кнопки фільтрів на весь екран */
+        order: -1; /* Розташування зверху */
+        margin-bottom: 20px;
+        padding: 10px;
+        box-shadow: none;
+        border: none;
+    }
+
+    .controls h3,
+    .controls label,
+    .controls input[type="range"] {
+        display: none; /* Видаляємо ползунок */
+    }
+
+    .controls button {
+        flex: 1 1 auto;
+        max-width: 100px;
+        padding: 10px;
+        font-size: 0.9em;
+    }
+}
+
+/* Планшети (730px–1200px) */
+@media (min-width: 730px) and (max-width: 1200px) {
+    main {
+        flex-direction: column; /* Вертикальне розташування */
+    }
+
+    .gallery {
+        grid-template-columns: 1fr 1fr; /* Дві картки в рядок */
+    }
+
+    .controls {
+        position: relative;
+        top: 0;
+        left: 0;
+        order: -1; /* Розташування фільтрів зверху */
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+
+/* Ориентація портрет: фільтри зверху */
+@media (max-width: 1200px) and (orientation: portrait) {
+    .controls {
+        order: -1; /* Фільтри завжди зверху */
+    }
+}
+
+/* Ориентація альбом: фільтри справа */
+@media (max-width: 1200px) and (orientation: landscape) {
+    .controls {
+        order: -1; /* Фільтри завжди зверху */
+    }
+}
+
+/* Десктоп (1200px і більше) */
+@media (min-width: 1200px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr); /* Три картки в рядок */
+    }
+
+    .controls {
+        order: 0; /* Фільтри на правій стороні */
+        flex: 1;
+    }
+
+    .controls h3,
+    .controls label,
+    .controls input[type="range"] {
+        display: block;
+    }
+}
